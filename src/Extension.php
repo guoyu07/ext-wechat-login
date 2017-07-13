@@ -6,12 +6,14 @@
  * @copyright (c) 2017, iBenchu.org
  * @datetime 2017-02-23 19:36
  */
-namespace Notadd\Cloud;
+namespace Notadd\WechatLogin;
 
 use Illuminate\Events\Dispatcher;
-use Notadd\Cloud\Listeners\CsrfTokenRegister;
-use Notadd\Cloud\Listeners\RouteRegister;
+use Notadd\WechatLogin\Listeners\CsrfTokenRegister;
+use Notadd\WechatLogin\Listeners\RouteRegister;
 use Notadd\Foundation\Extension\Abstracts\Extension as AbstractExtension;
+use Overtrue\LaravelSocialite\Socialite;
+
 /**
  * Class Extension.
  */
@@ -24,12 +26,11 @@ class Extension extends AbstractExtension
     {
         $this->app->make(Dispatcher::class)->subscribe(CsrfTokenRegister::class);
         $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
-        $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), 'cloud');
-        $this->loadViewsFrom(realpath(__DIR__ . '/../resources/views'), 'cloud');
+        $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), '');
         $this->publishes([
-            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/ext-cloud') => public_path('assets/extensions/ext-cloud'),
+            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/wechat-login') => public_path('assets/extensions/wechat-login'),
         ], 'public');
-        $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
+//        $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
     }
 
     /**
@@ -39,7 +40,7 @@ class Extension extends AbstractExtension
      */
     public static function description()
     {
-        return '云存储插件的配置和管理。';
+        return '微信登陆插件的配置和管理。';
     }
 
     /**
@@ -61,7 +62,7 @@ class Extension extends AbstractExtension
      */
     public static function name()
     {
-        return '云存储插件';
+        return '微信登陆插件';
     }
 
     /**
@@ -72,7 +73,7 @@ class Extension extends AbstractExtension
      */
     public static function script()
     {
-        return asset('assets/extensions/cloud/js/extension.min.js');
+        return asset('assets/extensions/wechat-login/js/extension.min.js');
     }
 
     /**
@@ -116,13 +117,8 @@ class Extension extends AbstractExtension
 
     public function register()
     {
-        return $this->registerCloud();
-    }
-
-    public function registerCloud()
-    {
-        $this->app->singleton('cloud', function ($app) {
-            return new Cloud($app);
+        $this->app->singleton('wechatLogin', function ($app) {
+            return new Socialite($app);
         });
     }
 
