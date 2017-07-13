@@ -11,19 +11,21 @@ namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
 use Illuminate\Container\Container;
+use Overtrue\Socialite\SocialiteManager;
+
 
 class TestHandler extends Handler
 {
-    protected $wechat;
+    protected $login;
 
     public function __construct(Container $container)
     {
         parent::__construct($container);
-        $this->wechat = $this->container->make('wechatLogin');
     }
 
     public function execute()
     {
 
+        $login = new SocialiteManager();
     }
 }
