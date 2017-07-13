@@ -1,0 +1,26 @@
+{
+    "name": "notadd/wechat-Login",
+    "description": "Notadd Extension for wechat-Login",
+    "type": "notadd-extension",
+    "keywords": ["notadd", "wechat", "extension"],
+    "homepage": "https://notadd.com",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "AllenGu",
+            "email": "674397601@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Notadd\\WechatLogin\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+    },
+    "require-dev": {
+        "notadd/installers": "0.5.*"
+    },
+    "minimum-stability": "dev"
+}
