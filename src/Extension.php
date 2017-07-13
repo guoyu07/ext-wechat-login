@@ -12,7 +12,6 @@ use Illuminate\Events\Dispatcher;
 use Notadd\WechatLogin\Listeners\CsrfTokenRegister;
 use Notadd\WechatLogin\Listeners\RouteRegister;
 use Notadd\Foundation\Extension\Abstracts\Extension as AbstractExtension;
-use Overtrue\LaravelSocialite\Socialite;
 
 /**
  * Class Extension.
@@ -117,9 +116,7 @@ class Extension extends AbstractExtension
 
     public function register()
     {
-        $this->app->singleton('wechatLogin', function ($app) {
-            return new Socialite($app);
-        });
+
     }
 
 }
