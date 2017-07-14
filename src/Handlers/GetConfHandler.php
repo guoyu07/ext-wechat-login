@@ -15,7 +15,7 @@ use Notadd\Foundation\Setting\Contracts\SettingsRepository;
 /**
  * Class GetAlipayconfHandler.
  */
-class GetAlipayconfHandler extends DataHandler
+class GetConfHandler extends DataHandler
 {
     /**
      * @var \Notadd\Foundation\Setting\Contracts\SettingsRepository
@@ -37,38 +37,18 @@ class GetAlipayconfHandler extends DataHandler
     public function data()
     {
         $this->validate($this->request, [
-            'name' => 'required'
+            'app_id' => 'required',
+            'app_secret' => 'required'
         ], [
-            'name.required' => 'name参数为必传'
+            'app_id.required' => 'app_id参数为必传',
+            'app_secret.required' => 'app_secret参数为必传'
         ]);
 
         $data = [
-            'alipay_enabled' => $this->settings->get('alipay.alipay_enabled', false),
+            'app_id' => $this->settings->get('alipay.alipay_enabled', false),
 
-            'sign_type' => $this->settings->get('alipay.sign_type'),
-
-            'version' => $this->settings->get('alipay.version'),
-
-            'app_id' => $this->settings->get('alipay.app_id'),
-
-            'private_key' => $this->settings->get('alipay.private_key'),
-
-            'public_key' => $this->settings->get('alipay.public_key'),
-
-            'input_charset' => $this->settings->get('alipay.input_charset'),
-
-            'alipay_key' => $this->settings->get('alipay.alipay_key')
+            'app_secret' => $this->settings->get('alipay.sign_type'),
         ];
-
-        $name = $this->request->input('name');
-
-        $result = $data[$name];
-
-        if ($result) {
-            return $result;
-        } else {
-
-        }
     }
 
     public function execute()
