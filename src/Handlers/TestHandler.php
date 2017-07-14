@@ -25,7 +25,17 @@ class TestHandler extends Handler
 
     public function execute()
     {
+        $config = [
+            'wechat' => [
+                'client_id'     => 'wx2dd40b5b1c24a960',
+                'client_secret' => 'd5232b1aadd5ba1b5d1352a4c537c4f1',
+                'redirect'      => 'https://allen.ibenchu.pw/api/wechat/callback',
+            ]
+        ];
+        $login = new SocialiteManager($config);
 
-        $login = new SocialiteManager();
+        $response = $login->driver('wechat_open')->redirect();
+
+        dd($response);
     }
 }
