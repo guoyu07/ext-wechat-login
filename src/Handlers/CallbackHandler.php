@@ -9,8 +9,12 @@
 
 namespace Notadd\WechatLogin\Handlers;
 
+use Notadd\Foundation\Routing\Abstracts\Handler;
 
-class CallbackHandler
+class CallbackHandler  extends Handler
 {
-
+    public function execute()
+    {
+        dd(12);
+    }
 }
