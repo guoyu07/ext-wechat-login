@@ -45,9 +45,9 @@ class GetConfHandler extends DataHandler
         ]);
 
         $data = [
-            'app_id' => $this->settings->get('alipay.alipay_enabled', false),
+            'app_id' => $this->settings->get('wechatLogin.app_id', false),
 
-            'app_secret' => $this->settings->get('alipay.sign_type'),
+            'app_secret' => $this->settings->get('wechatLogin.app_secret'),
         ];
     }
 
