@@ -46,7 +46,7 @@ class WeChatOpenPlatformProvider extends WeChatProvider
     /**
      * {@inheritdoc}.
      */
-    protected $scopes = ['snsapi_base'];
+    protected $scopes = ['snsapi_userinfo'];
 
     /**
      * Create a new provider instance.

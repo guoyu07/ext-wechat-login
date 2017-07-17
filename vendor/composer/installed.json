@@ -225,12 +225,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "526d8ef63e8701e02216b621e4a3a16085e2286f"
+            "reference": "811b676fbab9c99e359885032e5ebc70e442f5b8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/guzzle/psr7/526d8ef63e8701e02216b621e4a3a16085e2286f.zip",
-            "reference": "526d8ef63e8701e02216b621e4a3a16085e2286f",
+            "url": "https://files.phpcomposer.com/files/guzzle/psr7/811b676fbab9c99e359885032e5ebc70e442f5b8.zip",
+            "reference": "811b676fbab9c99e359885032e5ebc70e442f5b8",
             "shasum": ""
         },
         "require": {
@@ -243,7 +243,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.0"
         },
-        "time": "2017-06-19T13:30:27+00:00",
+        "time": "2017-07-17T09:11:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
