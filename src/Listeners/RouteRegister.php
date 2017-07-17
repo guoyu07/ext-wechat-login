@@ -28,7 +28,7 @@ class RouteRegister extends AbstractRouteRegister
 
         $this->router->group(['middleware' => ['cross', 'web'], 'prefix' => 'api/wechat'], function () {
 
-            $this->router->any('test', WechatOpenController::class . '@test');
+            $this->router->post('auth', WechatOpenController::class . '@auth');
 
             $this->router->any('callback', WechatOpenController::class . '@callback');
 
