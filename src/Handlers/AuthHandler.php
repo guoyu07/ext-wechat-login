@@ -29,12 +29,12 @@ class TestHandler extends Handler
             'wechat' => [
                 'client_id'     => 'wx2dd40b5b1c24a960',
                 'client_secret' => 'd5232b1aadd5ba1b5d1352a4c537c4f1',
-                'redirect'      => 'https://allen.ibenchu.pw/api/wechat/callback',
+                'redirect'      => 'https://allen.ibenchu.pw/api/wechat/callback'
             ]
         ];
         $login = new SocialiteManager($config);
 
-        $response = $login->driver('wechat_open')->redirect();
+        $response = $login->driver('wechat')->redirect();
 
         dd($response);
     }

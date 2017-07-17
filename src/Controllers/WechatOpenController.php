@@ -9,17 +9,27 @@
  */
 namespace Notadd\WechatLogin\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\WechatLogin\Handlers\TestHandler;
+use Notadd\WechatLogin\Handlers\AuthHandler;
 use Notadd\WechatLogin\Handlers\CallbackHandler;
 use Notadd\WechatLogin\Wechat;
+use Overtrue\Socialite\Providers\WeChatOpenPlatformProvider;
+use Overtrue\Socialite\Providers\WeChatProvider;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class TestController extends Controller
 {
-    public function test(TestHandler $handler)
+    public function auth(AuthHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
+    }
+
+    public function returnUrl()
+    {
+        $data = $this->request->all();
+        Log::info($data);
     }
 
     public function callback(CallbackHandler $handler)
