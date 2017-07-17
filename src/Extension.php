@@ -107,13 +107,6 @@ class Extension extends AbstractExtension
         return '0.1.0';
     }
 
-//    public function register(){
-//
-//        $this->app->singleton('cloud',function ($app) {
-//            return new Cloud($app);
-//        });
-//    }
-
     public function register()
     {
 
