@@ -24,10 +24,10 @@ class RouteRegister extends AbstractRouteRegister
      */
     public function handle()
     {
-
         $this->router->group(['middleware' => ['cross', 'web'], 'prefix' => 'api/wechat'], function () {
-            $this->router->get('test', TestController::class . '@test');
-        });
+            $this->router->any('test', TestController::class . '@test');
 
+            $this->router->any('callback', TestController::class . '@callback');
+        });
     }
 }
