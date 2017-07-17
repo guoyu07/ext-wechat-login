@@ -19,7 +19,7 @@ use Overtrue\Socialite\Providers\WeChatProvider;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class TestController extends Controller
+class WechatOpenController extends Controller
 {
     public function auth(AuthHandler $handler)
     {
