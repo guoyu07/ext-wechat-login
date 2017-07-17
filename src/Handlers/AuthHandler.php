@@ -12,30 +12,42 @@ namespace Notadd\WechatLogin\Handlers;
 use Notadd\Foundation\Routing\Abstracts\Handler;
 use Illuminate\Container\Container;
 use Overtrue\Socialite\SocialiteManager;
+use Notadd\Foundation\Setting\Contracts\SettingsRepository;
 
 
-class TestHandler extends Handler
+class AuthHandler extends Handler
 {
     protected $login;
 
-    public function __construct(Container $container)
+    /**
+     * @var \Notadd\Foundation\Setting\Contracts\SettingsRepository
+     */
+    protected $settings;
+
+    public function __construct(Container $container, SettingsRepository $settings)
     {
         parent::__construct($container);
+
+        $this->settings = $settings;
     }
 
     public function execute()
     {
         $config = [
             'wechat' => [
-                'client_id'     => 'wx2dd40b5b1c24a960',
-                'client_secret' => 'd5232b1aadd5ba1b5d1352a4c537c4f1',
+                'client_id'     => $this->settings->get('wechatLogin.app_id', false),
+                'client_secret' => $this->settings->get('wechatLogin.app_secret', false),
                 'redirect'      => 'https://allen.ibenchu.pw/api/wechat/callback'
             ]
         ];
+
         $login = new SocialiteManager($config);
 
-        $response = $login->driver('wechat')->redirect();
+        $driver = $login->driver('wechat');
+
+        $response = $driver->scopes(['snsapi_userinfo'])->redirect();
 
         dd($response);
+
     }
 }
