@@ -13,7 +13,7 @@ use Notadd\Foundation\Routing\Abstracts\Handler;
 use Illuminate\Container\Container;
 use Overtrue\Socialite\SocialiteManager;
 use Notadd\Foundation\Setting\Contracts\SettingsRepository;
-
+``
 
 class AuthHandler extends Handler
 {
