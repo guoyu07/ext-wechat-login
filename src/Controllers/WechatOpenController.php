@@ -12,12 +12,13 @@ namespace Notadd\WechatLogin\Controllers;
 use Illuminate\Support\Facades\Log;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\WechatLogin\Handlers\AuthHandler;
+use Notadd\WechatLogin\Handlers\GetConfHandler;
+use Notadd\WechatLogin\Handlers\SetConfHandler;
 use Notadd\WechatLogin\Handlers\CallbackHandler;
 use Notadd\WechatLogin\Wechat;
 use Overtrue\Socialite\Providers\WeChatOpenPlatformProvider;
 use Overtrue\Socialite\Providers\WeChatProvider;
 use Symfony\Component\HttpFoundation\Request;
-
 
 class WechatOpenController extends Controller
 {
@@ -60,10 +61,13 @@ class WechatOpenController extends Controller
     public function set(SetConfHandler $handler, Request $request)
     {
         $this->validate($request, [
-
+            'app_id' => 'required',
+            'app_secret' => 'required',
         ], [
-
+            'app_id.required' => 'app_id不能为空',
+            'app_secret.required' => 'app_secret不能为空',
         ]);
+
         return $handler->toResponse()->generateHttpResponse();
     }
 
