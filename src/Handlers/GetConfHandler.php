@@ -36,15 +36,7 @@ class GetConfHandler extends DataHandler
 
     public function data()
     {
-        $this->validate($this->request, [
-            'app_id' => 'required',
-            'app_secret' => 'required'
-        ], [
-            'app_id.required' => 'app_id参数为必传',
-            'app_secret.required' => 'app_secret参数为必传'
-        ]);
-
-        $data = [
+        return $data = [
             'app_id' => $this->settings->get('wechatLogin.app_id', false),
 
             'app_secret' => $this->settings->get('wechatLogin.app_secret'),
@@ -53,6 +45,8 @@ class GetConfHandler extends DataHandler
 
     public function execute()
     {
-        $this->data();
+        $data = $this->data();
+
+        return $data;
     }
 }
