@@ -1,0 +1,387 @@
+@import "~normalize.css";
+@import "~vue2-scrollbar/dist/style/vue2-scrollbar.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", serif;
+}
+
+.vue-scrollbar__scrollbar-vertical {
+    width: 3px;
+}
+
+.vue-scrollbar__scrollbar-vertical .scrollbar,
+.vue-scrollbar__scrollbar-horizontal .scrollbar {
+    background-color: #1a9fff;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1000px;
+    .row {
+        margin-left: -12px;
+        margin-right: -12px;
+        &:after {
+            clear: both;
+            display: table;
+            content: " ";
+        }
+        &:before {
+            display: table;
+            content: " ";
+        }
+        > .col-2 {
+            float: left;
+            min-height: 1px;
+            padding-left: 12px;
+            padding-right: 12px;
+            position: relative;
+            width: 16.666666%;
+        }
+        > .col-3 {
+            float: left;
+            min-height: 1px;
+            padding-left: 12px;
+            padding-right: 12px;
+            position: relative;
+            width: 25%;
+        }
+        > .col-4 {
+            float: left;
+            min-height: 1px;
+            padding-left: 12px;
+            padding-right: 12px;
+            position: relative;
+            width: 33.333333%;
+        }
+        > .col-12 {
+            float: left;
+            min-height: 1px;
+            padding-left: 12px;
+            padding-right: 12px;
+            position: relative;
+            width: 100%;
+        }
+    }
+}
+
+.install-wrap {
+    background: #fff;
+    padding-bottom: 100px;
+    > .install-header {
+        background: #1a9fff;
+        height: 300px;
+        > .container > span {
+            background: url("images/logo.svg") left center no-repeat;
+            background-size: 136px auto;
+            color: #fff;
+            display: block;
+            font-size: 14px;
+            line-height: 152px;
+            text-align: right;
+        }
+    }
+    > .container > .install-content {
+        background: #fff;
+        box-shadow: 0 0 43px rgba(0, 0, 0, 0.07);
+        margin-top: -148px;
+        > .step-header {
+            height: 128px;
+            margin-bottom: 20px;
+            > .step {
+                border-top: 4px solid #e4e4e4;
+                float: left;
+                height: 128px;
+                width: 25%;
+                > em {
+                    color: #b0b0b0;
+                    display: block;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 300;
+                    height: 26px;
+                    line-height: 26px;
+                    text-align: center;
+                }
+                > span {
+                    background-color: #fff;
+                    border-radius: 50%;
+                    box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                    color: #b0b0b0;
+                    display: block;
+                    font-size: 24px;
+                    height: 44px;
+                    line-height: 44px;
+                    margin: 30px auto 10px;
+                    text-align: center;
+                    width: 44px;
+                }
+                &.active {
+                    &.error {
+                        > em {
+                            color: #d94343;
+                        }
+                        > span {
+                            background-color: #d94343;
+                        }
+                    }
+                    > em {
+                        color: #5a5a5a;
+                    }
+                    > span {
+                        background-color: #1a9cf9;
+                        box-shadow: 6px 4px 16px 0 rgba(26, 159, 255, 0.16);
+                        color: #fff;
+                    }
+                }
+                &.error {
+                    border-color: #d94343;
+                }
+                &.success {
+                    border-color: #bde2fd;
+                }
+            }
+        }
+        > .step-content {
+            padding: 0 80px 80px;
+            > h1 {
+                color: #5a5a5a;
+                font-size: 18px;
+                font-weight: normal;
+                height: 74px;
+                line-height: 74px;
+                margin: 0 0 20px;
+                &.success {
+                    background: url("images/success.svg") left center no-repeat;
+                    background-size: 22px;
+                    padding-left: 32px;
+                }
+            }
+            > .form-horizontal {
+                button {
+                    background-color: #1a9fff;
+                    border: none;
+                    border-radius: 4px;
+                    box-shadow: 6px 4px 16px 0 rgba(26, 159, 255, 0.17);
+                    color: #fff;
+                    cursor: pointer;
+                    display: block;
+                    font-size: 18px;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    width: 100%;
+                    &:disabled {
+                        background-color: #f7f7f7;
+                        box-shadow: none;
+                        color: #d2d2d2;
+                    }
+                    &[type=submit] {
+                        margin-top: 30px;
+                    }
+                }
+                .accept {
+                    margin-top: 30px;
+                    > label {
+                        background: url("images/success-grey.svg") left center no-repeat;
+                        background-size: 21px;
+                        color: #5a5a5a;
+                        cursor: pointer;
+                        font-size: 16px;
+                        height: 22px;
+                        line-height: 22px;
+                        padding-left: 32px;
+                        &.active {
+                            background: url("images/success.svg") left center no-repeat;
+                            background-size: 21px;
+                            color: #1a9fff;
+                        }
+                        > input {
+                            display: none;
+                        }
+                    }
+                }
+                .check-info {
+                    margin-bottom: 20px;
+                    > .check-header {
+                        color: #666666;
+                        float: left;
+                        height: 52px;
+                        line-height: 52px;
+                        width: 38px;
+                    }
+                    > .check-wrap {
+                        border-radius: 4px;
+                        box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                        margin-left: 38px;
+                        padding: 20px;
+                        > .check-content {
+                            margin-bottom: 20px;
+                            > p {
+                                color: #222;
+                                font-size: 16px;
+                                margin: 0 0 10px;
+                            }
+                        }
+                        > .check-footer {
+                            &:after {
+                                clear: both;
+                                content: ' ';
+                                display: table;
+                            }
+                            &:before {
+                                content: ' ';
+                                display: table;
+                            }
+                            > .check-extend {
+                                font-size: 16px;
+                                float: right;
+                                > a {
+                                    text-decoration: none;
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                    &.error {
+                                        color: #d94343;
+                                    }
+                                    &.help {
+                                        color: #1a9fff;
+                                    }
+                                }
+                                > span {
+                                    color: #b0b0b0;
+                                    margin: 0 10px;
+                                }
+                            }
+                            > .check-status {
+                                float: left;
+                                font-size: 16px;
+                                height: 22px;
+                                line-height: 22px;
+                                padding-left: 32px;
+                                &.error {
+                                    background: url("images/error.svg") left center no-repeat;
+                                    background-size: 22px;
+                                    color: #d94343;
+                                }
+                                &.success {
+                                    background: url("images/success.svg") left center no-repeat;
+                                    background-size: 22px;
+                                    color: #1a9fff;
+                                }
+                            }
+                        }
+                    }
+                }
+                .form-group {
+                    margin-bottom: 25px;
+                    &.error {
+                        > input {
+                            box-shadow: 6px 4px 16px 0 rgba(217, 67, 67, 0.26);
+                            color: #d94343;
+                        }
+                        > label {
+                            color: #d94343;
+                        }
+                        > p {
+                            color: #d94343;
+                        }
+                    }
+                    > a {
+                        box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                        color: #b0b0b0;
+                        display: block;
+                        font-size: 14px;
+                        font-weight: normal;
+                        height: 46px;
+                        line-height: 46px;
+                        padding: 0 15px;
+                        text-decoration: none;
+                        width: 100%;
+                    }
+                    > input {
+                        border: none;
+                        box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                        color: #b0b0b0;
+                        display: block;
+                        font-size: 14px;
+                        font-weight: normal;
+                        height: 46px;
+                        padding: 0 15px;
+                        width: 100%;
+                        &:focus {
+                            border: none;
+                            box-shadow: 6px 4px 16px 0 rgba(26, 159, 255, 0.17);
+                            color: #1a9fff;
+                            outline: none;
+                        }
+                        &:-moz-placeholder,
+                        &:-ms-input-placeholder,
+                        &::-webkit-input-placeholder {
+                            color: #c0c0c0;
+                        }
+                    }
+                    > label {
+                        color: #838383;
+                        display: block;
+                        font-size: 14px;
+                        height: 46px;
+                        line-height: 46px;
+                    }
+                    > .btn-group {
+                        > label {
+                            color: #b0b0b0;
+                            display: block;
+                            float: left;
+                            height: 44px;
+                            line-height: 44px;
+                            position: relative;
+                            text-align: center;
+                            width: 120px;
+                            > input {
+                                cursor: pointer;
+                                height: 100%;
+                                left: 0;
+                                opacity: 0;
+                                position: absolute;
+                                top: 0;
+                                width: 100%;
+                            }
+                            &:hover {
+                                box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                            }
+                            &.active {
+                                box-shadow: 6px 4px 16px 0 rgba(26, 159, 255, 0.16);
+                                color: #1a9fff;
+                            }
+                        }
+                        &:after {
+                            clear: both;
+                            content: ' ';
+                            display: table;
+                        }
+                        &:before {
+                            content: ' ';
+                            display: table;
+                        }
+                    }
+                }
+                .scrollbar-wrap {
+                    border: 2px solid #f7f7f7;
+                    border-radius: 4px;
+                    box-shadow: 6px 4px 16px 0 rgba(0, 0, 0, 0.06);
+                    max-height: 400px;
+                    .scrollbar-content {
+                        padding: 20px;
+                        > p {
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
