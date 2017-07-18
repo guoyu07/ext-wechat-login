@@ -19,7 +19,8 @@
     "require": {
         "php": ">=7.0",
         "overtrue/laravel-socialite": "~1.0",
-        "overtrue/wechat": "~3.1"
+        "overtrue/wechat": "~3.1",
+        "bacon/bacon-qr-code": "~1.0"
     },
     "require-dev": {
         "notadd/installers": "0.5.*"

@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d0be60f6563527571af963f46b84dcf",
+    "content-hash": "a177bc49ef6cec9cb333afd82f959f9a",
     "packages": [
+        {
+            "name": "bacon/bacon-qr-code",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bacon/BaconQrCode.git",
+                "reference": "031a2ce68c5794064b49d11775b2daf45c96e21c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/Bacon/BaconQrCode/031a2ce68c5794064b49d11775b2daf45c96e21c.zip",
+                "reference": "031a2ce68c5794064b49d11775b2daf45c96e21c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-gd": "to generate QR code images"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "BaconQrCode": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "http://www.dasprids.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "BaconQrCode is a QR code generator for PHP.",
+            "homepage": "https://github.com/Bacon/BaconQrCode",
+            "time": "2016-01-09T22:55:35+00:00"
+        },
         {
             "name": "doctrine/cache",
             "version": "dev-master",
@@ -437,16 +479,16 @@
         },
         {
             "name": "overtrue/wechat",
-            "version": "3.3.10",
+            "version": "3.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "7841ea7034adfcdf0f3cf25dcae94345eea4ad42"
+                "reference": "5074d36e1a72df13579c84ed0471d8e0f08122bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/overtrue/wechat/7841ea7034adfcdf0f3cf25dcae94345eea4ad42.zip",
-                "reference": "7841ea7034adfcdf0f3cf25dcae94345eea4ad42",
+                "url": "https://files.phpcomposer.com/files/overtrue/wechat/5074d36e1a72df13579c84ed0471d8e0f08122bb.zip",
+                "reference": "5074d36e1a72df13579c84ed0471d8e0f08122bb",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +533,7 @@
                 "weixin",
                 "weixin-sdk"
             ],
-            "time": "2017-07-13T00:32:40+00:00"
+            "time": "2017-07-17T11:09:02+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -499,12 +541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "16281bf853bcf76cdbb548d5427b9f2d0ca57a62"
+                "reference": "2a37c5d9bdd4d1cee424f5f46cd738a776b00228"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/silexphp/Pimple/16281bf853bcf76cdbb548d5427b9f2d0ca57a62.zip",
-                "reference": "16281bf853bcf76cdbb548d5427b9f2d0ca57a62",
+                "url": "https://files.phpcomposer.com/files/silexphp/Pimple/2a37c5d9bdd4d1cee424f5f46cd738a776b00228.zip",
+                "reference": "2a37c5d9bdd4d1cee424f5f46cd738a776b00228",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +559,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1.x-dev"
+                    "dev-master": "3.2.x-dev"
                 }
             },
             "autoload": {
@@ -541,7 +583,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2017-07-13 08:55:36"
+            "time": "2017-07-17 17:06:34"
         },
         {
             "name": "psr/container",
@@ -695,12 +737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "f270b0d8660a53a082589d8a8e1a932408268082"
+                "reference": "05871b5b3289892ad560bfec0fc5300628afb7b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/http-foundation/f270b0d8660a53a082589d8a8e1a932408268082.zip",
-                "reference": "f270b0d8660a53a082589d8a8e1a932408268082",
+                "url": "https://files.phpcomposer.com/files/symfony/http-foundation/05871b5b3289892ad560bfec0fc5300628afb7b0.zip",
+                "reference": "05871b5b3289892ad560bfec0fc5300628afb7b0",
                 "shasum": ""
             },
             "require": {
@@ -740,7 +782,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-12 14:42:11"
+            "time": "2017-07-17 14:07:19"
         },
         {
             "name": "symfony/polyfill-mbstring",
