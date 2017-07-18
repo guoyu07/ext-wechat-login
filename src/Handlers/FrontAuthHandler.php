@@ -16,8 +16,6 @@ use Notadd\Foundation\Setting\Contracts\SettingsRepository;
 
 class AuthHandler extends Handler
 {
-    protected $login;
-
     /**
      * @var \Notadd\Foundation\Setting\Contracts\SettingsRepository
      */
@@ -32,21 +30,10 @@ class AuthHandler extends Handler
 
     public function execute()
     {
-        $config = [
-            'wechat' => [
-                'client_id'     => $this->settings->get('wechatLogin.app_id', false),
-                'client_secret' => $this->settings->get('wechatLogin.app_secret', false),
-                'redirect'      => 'https://allen.ibenchu.pw/api/wechat/callback'
-            ]
-        ];
+        $socialite = $this->container->make('wechat');
 
-        $login = new SocialiteManager($config);
+        $driver = $socialite->driver('wechat')->scopes(['snsapi_userinfo']);
 
-        $driver = $login->driver('wechat');
-
-        $response = $driver->scopes(['snsapi_userinfo'])->redirect();
-
-        dd($response);
-
+        $response = $driver->redirect();
     }
 }
