@@ -12,6 +12,8 @@ use Illuminate\Events\Dispatcher;
 use Notadd\WechatLogin\Listeners\CsrfTokenRegister;
 use Notadd\WechatLogin\Listeners\RouteRegister;
 use Notadd\Foundation\Extension\Abstracts\Extension as AbstractExtension;
+use Overtrue\Socialite\SocialiteManager;
+use Notadd\Foundation\Setting\Contracts\SettingsRepository;
 
 /**
  * Class Extension.
@@ -29,7 +31,7 @@ class Extension extends AbstractExtension
         $this->publishes([
             realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/wechat-login') => public_path('assets/extensions/wechat-login'),
         ], 'public');
-//        $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
+        $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
     }
 
     /**
@@ -109,7 +111,19 @@ class Extension extends AbstractExtension
 
     public function register()
     {
+        $settings = $this->app->make(SettingsRepository::class);
 
+        $this->app->singleton('wechat', function () use ($settings) {
+
+            $config = [
+                'wechat' => [
+                    'client_id'     => $settings->get('wechatLogin.app_id', false),
+                    'client_secret' => $settings->get('wechatLogin.app_secret', false),
+                    'redirect'      => '/api/wechat/callback'
+                ]
+            ];
+            return new SocialiteManager($config);
+        });
     }
 
 }
