@@ -15,16 +15,39 @@ use Notadd\WechatLogin\Handlers\AuthHandler;
 use Notadd\WechatLogin\Handlers\GetConfHandler;
 use Notadd\WechatLogin\Handlers\SetConfHandler;
 use Notadd\WechatLogin\Handlers\CallbackHandler;
-use Notadd\WechatLogin\Wechat;
-use Overtrue\Socialite\Providers\WeChatOpenPlatformProvider;
-use Overtrue\Socialite\Providers\WeChatProvider;
 use Symfony\Component\HttpFoundation\Request;
+use Notadd\Foundation\Setting\Contracts\SettingsRepository;
+use Overtrue\Socialite\SocialiteManager;
 
 class WechatOpenController extends Controller
 {
+    /**
+     * @var \Notadd\Foundation\Setting\Contracts\SettingsRepository
+     */
+    protected $settings;
+
     public function auth(AuthHandler $handler)
     {
-        return $handler->toResponse()->generateHttpResponse();
+        $settings = $this->container->make(SettingsRepository::class);
+
+        $this->settings = $settings;
+
+        $config = [
+            'wechat' => [
+                'client_id'     => $this->settings->get('wechatLogin.app_id', false),
+                'client_secret' => $this->settings->get('wechatLogin.app_secret', false),
+                'redirect'      => '/api/wechat/callback'
+            ]
+        ];
+
+        $login = new SocialiteManager($config);
+
+        $driver = $login->driver('wechat');
+
+        $response = $driver->scopes(['snsapi_userinfo'])->redirect();
+
+        dd($response);
+
     }
 
     public function returnUrl()
