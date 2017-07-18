@@ -11,7 +11,7 @@ namespace Notadd\WechatLogin\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\WechatLogin\Handlers\AuthHandler;
+use Notadd\WechatLogin\Handlers\FrontAuthHandler;
 use Notadd\WechatLogin\Handlers\GetConfHandler;
 use Notadd\WechatLogin\Handlers\SetConfHandler;
 use Notadd\WechatLogin\Handlers\CallbackHandler;
@@ -26,34 +26,14 @@ class WechatOpenController extends Controller
      */
     protected $settings;
 
-    public function auth(AuthHandler $handler)
+    public function auth(FrontAuthHandler $handler)
     {
-        $settings = $this->container->make(SettingsRepository::class);
-
-        $this->settings = $settings;
-
-        $config = [
-            'wechat' => [
-                'client_id'     => $this->settings->get('wechatLogin.app_id', false),
-                'client_secret' => $this->settings->get('wechatLogin.app_secret', false),
-                'redirect'      => '/api/wechat/callback'
-            ]
-        ];
-
-        $login = new SocialiteManager($config);
-
-        $driver = $login->driver('wechat');
-
-        $response = $driver->scopes(['snsapi_userinfo'])->redirect();
-
-        dd($response);
-
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     public function returnUrl()
     {
-        $data = $this->request->all();
-        Log::info($data);
+        dd(1);
     }
 
     public function callback(CallbackHandler $handler)
@@ -84,15 +64,16 @@ class WechatOpenController extends Controller
     public function set(SetConfHandler $handler, Request $request)
     {
         $this->validate($request, [
-            'app_id' => 'required',
-            'app_secret' => 'required',
+            'app_id' => 'required|regex:/(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{18}$/',
+            'app_secret' => 'required|regex:/(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{32}$/',
         ], [
             'app_id.required' => 'app_id不能为空',
+            'app_id.regex' => 'app_id必须为18位数字,字母组成的字符串(不含特殊字符)',
             'app_secret.required' => 'app_secret不能为空',
+            'app_secret.regex' => 'app_secret必须为为32位数字,字母组成的字符串(不含特殊字符)'
         ]);
 
         return $handler->toResponse()->generateHttpResponse();
     }
-
 
 }
