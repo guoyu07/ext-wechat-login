@@ -20,5 +20,6 @@ class WechatUser extends Model
 
     public function userInfo()
     {
+        return $this->hasOne('Member', 'id', 'user_id');
     }
 }
