@@ -10,7 +10,6 @@
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
-use Illuminate\Support\Facades\Log;
 use Notadd\WechatLogin\Models\WechatUser;
 use Notadd\WechatLogin\Models\LoginStatus;
 
