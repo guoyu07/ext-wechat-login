@@ -119,7 +119,7 @@ class Extension extends AbstractExtension
                 'wechat' => [
                     'client_id'     => $settings->get('wechatLogin.app_id', false),
                     'client_secret' => $settings->get('wechatLogin.app_secret', false),
-                    'redirect'      => '/api/wechat/callback'
+                    'redirect'      => $settings->get('wechatLogin.domain', '') . '/api/wechat/callback'
                 ]
             ];
             return new SocialiteManager($config);
