@@ -11,7 +11,6 @@ namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
 use Notadd\WechatLogin\Models\LoginStatus;
-use Illuminate\Support\Facades\Log;
 use Notadd\WechatLogin\Models\WechatUser;
 
 class QueryHandler extends Handler
@@ -32,16 +31,14 @@ class QueryHandler extends Handler
 
         $timestamp = substr($token, 22);
 
-        if (time() - $timestamp > 300)
-        {
+        if (time() - $timestamp > 300) {
             $this->withCode(402)->withMessage('token失效，请刷新二维码页面重试');
         }
 
         $userInfo = LoginStatus::where('token', $token)->where('status', 2)->first()->user;
 
 
-        if ($userInfo instanceof WechatUser)
-        {
+        if ($userInfo instanceof WechatUser) {
             $userInfo = $userInfo->toArray();
             $this->withCode(200)->withData($userInfo)->withMessage('获取用户微信详情成功');
         }
