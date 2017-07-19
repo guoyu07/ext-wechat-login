@@ -7,6 +7,7 @@
  * @copyright (c) 2017, notadd.com
  * @datetime: 17-7-13 下午5:30
  */
+
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
@@ -41,8 +42,7 @@ class FrontAuthHandler extends Handler
 
         $saveResult = $login->save();
 
-        if (! $saveResult)
-        {
+        if (!$saveResult) {
             $this->withCode(402)->withMessage('保存token失败，请稍候重试');
         }
 
@@ -50,12 +50,12 @@ class FrontAuthHandler extends Handler
 
         $driver = $socialite->driver('wechat')->scopes(['snsapi_userinfo']);
 
-        $redirectUrl = url('/api/wechat/callback'). '?token=' .$token;
+        $redirectUrl = url('/api/wechat/callback') . '?token=' . $token;
 
         $response = $driver->setRedirectUrl($redirectUrl)->redirect();
 
         $url = $response->getTargetUrl();
 
-        return $this->withCode(200)->withData(['url' => $url, 'token'=> $token])->withMessage('获取授权路径成功');
+        return $this->withCode(200)->withData(['url' => $url, 'token' => $token])->withMessage('获取授权路径成功');
     }
 }
