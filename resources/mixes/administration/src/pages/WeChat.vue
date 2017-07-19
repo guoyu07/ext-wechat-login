@@ -8,12 +8,48 @@
             });
         },
         data() {
+            const reg1 = /^(?=.*\d+)(?=.*[a-zA-Z]+)[\da-zA-Z]{18}$/;
+            const reg2 = /^(?!^\d+$)(?!^[a-zA-Z]+$)[\da-zA-Z]{32}$/;
+            const validatorWechatId = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('APP_ID不能为空'));
+                } else if (!reg1.test(value)) {
+                    callback(new Error('APP_ID必须为18位数字,字母组成的字符串(不含特殊字符)'));
+                } else {
+                    callback();
+                }
+            };
+            const validatorAppSecret = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('APP_SECRET不能为空'));
+                } else if (!reg2.test(value)) {
+                    callback(new Error('APP_SECRET必须为32位数字,字母组成的字符串(不含特殊字符)'));
+                } else {
+                    callback();
+                }
+            };
             return {
                 form: {
                     app_id: '',
                     app_secret: '',
                 },
                 loading: false,
+                rules: {
+                    app_id: [
+                        {
+                            required: true,
+                            trigger: 'change',
+                            validator: validatorWechatId,
+                        },
+                    ],
+                    app_secret: [
+                        {
+                            required: true,
+                            trigger: 'change',
+                            validator: validatorAppSecret,
+                        },
+                    ],
+                },
             };
         },
         methods: {
@@ -22,11 +58,17 @@
                 self.loading = true;
                 self.$refs.form.validate(valid => {
                     if (valid) {
-                        self.$Message.success('提交成功!');
+                        self.$http.post('https://allen.ibenchu.pw/api/wechat/set', self.form).then(() => {
+                            self.$notice.open({
+                                title: '微信公众平台设置配置项成功!',
+                            });
+                        }).finally(() => {
+                            self.loading = false;
+                        });
                     } else {
                         self.loading = false;
                         self.$notice.error({
-                            title: '请正确填写设置信息！',
+                            title: '请正确填写设置信息',
                         });
                     }
                 });
