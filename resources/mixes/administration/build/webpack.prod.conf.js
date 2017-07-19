@@ -20,7 +20,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     output: {
         path: config.build.assetsRoot,
         filename: utils.assetsPath('js/extension.min.js'),
-        library: 'notadd/baidu-push',
+        library: 'notadd/wechat-log',
         libraryTarget: "umd"
     },
     plugins: [
