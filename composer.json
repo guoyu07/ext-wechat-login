@@ -1,6 +1,6 @@
 {
-    "name": "notadd/wechat-Login",
-    "description": "Notadd Extension for wechat-Login",
+    "name": "notadd/wechat-login",
+    "description": "Notadd Extension for wechat-login",
     "type": "notadd-extension",
     "keywords": ["notadd", "wechat", "extension"],
     "homepage": "https://notadd.com",
