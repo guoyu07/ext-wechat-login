@@ -11,10 +11,11 @@ namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
 use Illuminate\Container\Container;
-use Overtrue\Socialite\SocialiteManager;
+use Notadd\WechatLogin\help;
 use Notadd\Foundation\Setting\Contracts\SettingsRepository;
+use Notadd\WechatLogin\Models\LoginStatus;
 
-class AuthHandler extends Handler
+class FrontAuthHandler extends Handler
 {
     /**
      * @var \Notadd\Foundation\Setting\Contracts\SettingsRepository
@@ -30,10 +31,31 @@ class AuthHandler extends Handler
 
     public function execute()
     {
+        $token = help::getToken();
+
+        $login = new LoginStatus();
+
+        $login->token = $token;
+
+        $login->status = 1;//status = 1 代表该用户暂未扫描二维码登陆
+
+        $saveResult = $login->save();
+
+        if (! $saveResult)
+        {
+            $this->withCode(402)->withMessage('保存token失败，请稍候重试');
+        }
+
         $socialite = $this->container->make('wechat');
 
         $driver = $socialite->driver('wechat')->scopes(['snsapi_userinfo']);
 
-        $response = $driver->redirect();
+        $redirectUrl = url('/api/wechat/callback'). '?token=' .$token;
+
+        $response = $driver->setRedirectUrl($redirectUrl)->redirect();
+
+        $url = $response->getTargetUrl();
+
+        return $this->withCode(200)->withData(['url' => $url, 'token'=> $token])->withMessage('获取授权路径成功');
     }
 }

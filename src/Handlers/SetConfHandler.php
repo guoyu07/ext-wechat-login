@@ -58,6 +58,8 @@ class SetConfHandler extends AbstractSetHandler
 
         $this->settings->set('wechatLogin.app_secret', $this->request->input('app_secret'));
 
+        $this->settings->set('wechatLogin.domain', $this->request->input('domain'));
+
         return true;
     }
 

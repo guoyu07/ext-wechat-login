@@ -10,9 +10,9 @@
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
-use Overtrue\Socialite\SocialiteManager;
 use Illuminate\Support\Facades\Log;
-use Notadd\Foundation\Setting\Contracts\SettingsRepository;
+use Notadd\WechatLogin\Models\WechatUser;
+use Notadd\WechatLogin\Models\LoginStatus;
 
 class CallbackHandler extends Handler
 {
@@ -22,30 +22,30 @@ class CallbackHandler extends Handler
     {
         $data = $this->request->input();
 
-//        if (is_null($data) || ! in_array('code', $data) || ! in_array('state', $data)) {
-//            $this->withCode(402)->withMessage('服务器异常，请稍候重试');
-//        }
-
-        $this->settings = $this->container->make(SettingsRepository::class);
-
         $code = $data['code'];
 
-        $config = [
-            'wechat' => [
-                'client_id'     => $this->settings->get('wechatLogin.app_id', false),
-                'client_secret' => $this->settings->get('wechatLogin.app_secret', false),
-                'redirect'      => 'https://allen.ibenchu.pw/'
-            ]
-        ];
+        $socialite = app('wechat');
 
-        $login = new SocialiteManager($config);
+        $driver = $socialite->driver('wechat')->scopes(['snsapi_userinfo']);
 
-        $driver = $login->driver('wechat')->scopes(['snsapi_userinfo']);
+        $accessToken = $driver->getAccessToken($code);
 
-        $token = $driver->getAccessToken($code);
+        $response = $driver->user($accessToken);
 
-        $response = $driver->user($token);
+        $userInfo = $response->getOriginal();
 
-        Log::info($response->getOriginal());
+        unset($userInfo['privilege']);
+
+        $userInfo['user_id'] = 0;
+
+        try {
+            $result = WechatUser::updateOrCreate(['openid' => $userInfo['openid']], $userInfo);
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
+
+        $token = $data['token'];
+
+        $login = LoginStatus::where('token', $token)->update(['status' => 2, 'openid' => $userInfo['openid'], 'ip' => $this->request->getClientIp()]);
     }
 }
