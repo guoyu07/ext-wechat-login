@@ -29,7 +29,7 @@ class Extension extends AbstractExtension
         $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), '');
         $this->publishes([
-            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/wechat-login') => public_path('assets/extensions/wechat-login'),
+            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/notadd/wechat-log') => public_path('assets/extensions/notadd/wechat-log'),
         ], 'public');
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
     }
@@ -74,7 +74,7 @@ class Extension extends AbstractExtension
      */
     public static function script()
     {
-        return asset('assets/extensions/wechat-login/js/extension.min.js');
+        return asset('assets/extensions/notadd/wechat-log/js/extension.min.js');
     }
 
     /**
@@ -84,7 +84,9 @@ class Extension extends AbstractExtension
      */
     public static function stylesheet()
     {
-        return [];
+        return [
+            asset('assets/extensions/notadd/wechat-log/css/extension.min.css')
+        ];
     }
 
     /**
@@ -119,7 +121,7 @@ class Extension extends AbstractExtension
                 'wechat' => [
                     'client_id'     => $settings->get('wechatLogin.app_id', false),
                     'client_secret' => $settings->get('wechatLogin.app_secret', false),
-                    'redirect'      => $settings->get('wechatLogin.domain', '') . '/api/wechat/callback'
+                    'redirect'      => ''
                 ]
             ];
             return new SocialiteManager($config);
