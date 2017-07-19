@@ -11,7 +11,7 @@ use Notadd\Foundation\Database\Migrations\Migration;
 /**
  * Class CreateWechatAdminTable.
  */
-class CreateWechatAdminTable extends Migration
+class CreateWechatLoginTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,17 +20,13 @@ class CreateWechatAdminTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('wechat_admin', function (Blueprint $table) {
+        $this->schema->create('wechat_login', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('openid');
-            $table->integer('user_id')->nullable();
-            $table->string('nickname');
-            $table->smallInteger('sex')->comment('0保密,1男,2女');
-            $table->string('language');
-            $table->string('city');
-            $table->string('province');
-            $table->string('country');
-            $table->string('headimgurl');
+            $table->string('token', 32);
+            $table->string('openid')->nullable();
+            $table->smallInteger('status')->comment('1:等待登陆,2:登陆成功,3:已通知');
+            $table->string('ip')->nullable();
+            $table->string('client')->nullable();
             $table->timestamps();
         });
     }
@@ -42,6 +38,6 @@ class CreateWechatAdminTable extends Migration
      */
     public function down()
     {
-        $this->schema->drop('wechat_admin');
+        $this->schema->drop('wechat_login');
     }
 }
