@@ -29,7 +29,7 @@ class Extension extends AbstractExtension
         $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), '');
         $this->publishes([
-            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/notadd/wechat-log') => public_path('assets/extensions/notadd/wechat-log'),
+            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/notadd/wechat-login') => public_path('assets/extensions/notadd/wechat-login'),
         ], 'public');
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
     }
@@ -74,7 +74,7 @@ class Extension extends AbstractExtension
      */
     public static function script()
     {
-        return asset('assets/extensions/notadd/wechat-log/js/extension.min.js');
+        return asset('assets/extensions/notadd/wechat-login/js/extension.min.js');
     }
 
     /**
@@ -85,7 +85,7 @@ class Extension extends AbstractExtension
     public static function stylesheet()
     {
         return [
-            asset('assets/extensions/notadd/wechat-log/css/extension.min.css')
+            asset('assets/extensions/notadd/wechat-login/css/extension.min.css')
         ];
     }
 

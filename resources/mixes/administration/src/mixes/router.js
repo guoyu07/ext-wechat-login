@@ -5,7 +5,7 @@ export default function (injection) {
         {
             beforeEnter: injection.middleware.requireAuth,
             component: WeChat,
-            path: 'wechat',
+            path: 'wechat-login',
         },
     ]);
 }
