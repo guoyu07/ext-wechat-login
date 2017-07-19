@@ -12,7 +12,9 @@ namespace Notadd\WechatLogin\Controllers;
 use Illuminate\Support\Facades\Log;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\WechatLogin\Handlers\FrontAuthHandler;
+use Notadd\WechatLogin\Handlers\BackAuthHandler;
 use Notadd\WechatLogin\Handlers\GetConfHandler;
+use Notadd\WechatLogin\Handlers\QueryHandler;
 use Notadd\WechatLogin\Handlers\SetConfHandler;
 use Notadd\WechatLogin\Handlers\CallbackHandler;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,9 +33,14 @@ class WechatOpenController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
-    public function returnUrl()
+    public function login(BackAuthHandler $handler)
     {
-        dd(1);
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    public function query(QueryHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     public function callback(CallbackHandler $handler)
@@ -66,11 +73,13 @@ class WechatOpenController extends Controller
         $this->validate($request, [
             'app_id' => 'required|regex:/(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{18}$/',
             'app_secret' => 'required|regex:/(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{32}$/',
+            'domain' => 'required'
         ], [
             'app_id.required' => 'app_id不能为空',
             'app_id.regex' => 'app_id必须为18位数字,字母组成的字符串(不含特殊字符)',
             'app_secret.required' => 'app_secret不能为空',
-            'app_secret.regex' => 'app_secret必须为为32位数字,字母组成的字符串(不含特殊字符)'
+            'app_secret.regex' => 'app_secret必须为为32位数字,字母组成的字符串(不含特殊字符)',
+            'domain.required' => '域名为必填参数'
         ]);
 
         return $handler->toResponse()->generateHttpResponse();
