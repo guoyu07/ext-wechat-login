@@ -36,7 +36,7 @@
 </script>
 <template>
     <div class="setting-wrap">
-        <div class="wechat-log-wrap">
+        <div class="wechat-login-wrap">
             <tabs value="name1">
                 <tab-pane label="微信配置" name="name1">
                     <card :bordered="false">
