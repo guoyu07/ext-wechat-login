@@ -39,9 +39,7 @@ class GetConfHandler extends DataHandler
         return $data = [
             'app_id' => $this->settings->get('wechatLogin.app_id', false),
 
-            'app_secret' => $this->settings->get('wechatLogin.app_secret'),
-
-            'domain' => $this->settings->get('wechatLogin.domain')
+            'app_secret' => $this->settings->get('wechatLogin.app_secret')
         ];
     }
 
