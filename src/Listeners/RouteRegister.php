@@ -24,8 +24,6 @@ class RouteRegister extends AbstractRouteRegister
      */
     public function handle()
     {
-        $this->router->any('returnback', WechatOpenController::class . '@returnUrl');
-
         $this->router->group(['middleware' => ['cross', 'web'], 'prefix' => 'api/wechat'], function () {
 
             $this->router->any('auth', WechatOpenController::class . '@auth');
@@ -38,9 +36,11 @@ class RouteRegister extends AbstractRouteRegister
 
             $this->router->post('get', WechatOpenController::class . '@get');
 
-            $this->router->post('user', WechatOpenController::class . '@user');
-
             $this->router->post('query', WechatOpenController::class . '@query');
+
+            $this->router->post('bind', WechatOpenController::class . '@bind');
+
+            $this->router->any('bindcallback', WechatOpenController::class . '@bindCallback');
 
         });
     }
