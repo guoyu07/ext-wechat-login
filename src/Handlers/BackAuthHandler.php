@@ -7,6 +7,7 @@
  * @copyright (c) 2017, notadd.com
  * @datetime: 17-7-13 下午5:30
  */
+
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
@@ -43,8 +44,7 @@ class BackAuthHandler extends Handler
 
         $saveResult = $login->save();
 
-        if (! $saveResult)
-        {
+        if (!$saveResult) {
             $this->withCode(402)->withMessage('保存token失败，请稍候重试');
         }
 
@@ -52,7 +52,7 @@ class BackAuthHandler extends Handler
 
         $driver = $socialite->driver('wechat')->scopes(['snsapi_userinfo']);
 
-        $redirectUrl = $this->settings->get('wechatLogin.domain', '') . '/api/wechat/callback'. '?token='.$token;
+        $redirectUrl = url('/api/wechat/callback') . '?token=' . $token;
 
         $response = $driver->setRedirectUrl($redirectUrl)->redirect();
 
@@ -66,7 +66,7 @@ class BackAuthHandler extends Handler
 
         $writer = new Writer($renderer);
 
-        $fileName = 'qrcodeForLogin'.random_int(0, 999999).'.png';
+        $fileName = 'qrcodeForLogin' . random_int(0, 999999) . '.png';
 
         $writer->writeFile($url, $fileName);
 
