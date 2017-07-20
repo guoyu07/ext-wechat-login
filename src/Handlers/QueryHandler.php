@@ -32,7 +32,7 @@ class QueryHandler extends Handler
         $timestamp = substr($token, 22);
 
         if (time() - $timestamp > 300) {
-            $this->withCode(402)->withMessage('token失效，请刷新二维码页面重试');
+            $this->withCode(402)->withError('token失效，请刷新二维码页面重试');
             exit;
         }
 

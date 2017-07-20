@@ -45,7 +45,7 @@ class BackAuthHandler extends Handler
         $saveResult = $login->save();
 
         if (!$saveResult) {
-            $this->withCode(402)->withMessage('保存token失败，请稍候重试');
+            $this->withCode(400)->withError('保存token失败，请稍候重试');
         }
 
         $socialite = $this->container->make('wechat');
@@ -79,7 +79,7 @@ class BackAuthHandler extends Handler
         if ($result) {
             return $this->withCode(200)->withData(['qrcode' => $base64_qrcode, 'token' => $token])->withMessage('获取二维码成功');
         } else {
-            return $this->withCode(402)->withMessage('服务器异常,请稍候重试');
+            return $this->withCode(402)->withError('服务器异常,请稍候重试');
         }
 
     }

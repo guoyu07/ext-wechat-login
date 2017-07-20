@@ -59,7 +59,7 @@ class BindHandler extends Handler
         if ($result) {
             return $this->withCode(200)->withData(['qrcode' => $base64_qrcode, 'token' => $token])->withMessage('获取二维码成功');
         } else {
-            return $this->withCode(402)->withMessage('服务器异常,请稍候重试');
+            return $this->withCode(402)->withError('服务器异常,请稍候重试');
         }
 
     }

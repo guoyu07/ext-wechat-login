@@ -43,7 +43,7 @@ class FrontAuthHandler extends Handler
         $saveResult = $login->save();
 
         if (!$saveResult) {
-            $this->withCode(402)->withMessage('保存token失败，请稍候重试');
+            $this->withCode(402)->withError('保存token失败，请稍候重试');
         }
 
         $socialite = $this->container->make('wechat');

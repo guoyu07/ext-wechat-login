@@ -34,7 +34,7 @@ class BindQueryHandler extends Handler
         $timestamp = substr($token, 22);
 
         if (time() - $timestamp > 300) {
-            $this->withCode(402)->withMessage('token失效，请刷新二维码页面重试');
+            $this->withCode(402)->withError('token失效，请刷新二维码页面重试');
             exit;
         }
         $uid = $this->request->input('user_id');
@@ -47,7 +47,7 @@ class BindQueryHandler extends Handler
         {
             $this->withCode(200)->withMessage('绑定成功');
         } else {
-            $this->withCode(402)->withMessage('绑定失败');
+            $this->withCode(400)->withError('绑定失败');
         }
     }
 }
