@@ -17,27 +17,7 @@ class BindCallbackHandler extends Handler
 {
     public function execute()
     {
-        /**
-         * verify the token's validity(5 min = 300s)
-         */
-
-        $token = $this->request->input('token');
-
-        $timestamp = substr($token, 22);
-
-        if (time() - $timestamp > 300) {
-            $this->withCode(402)->withMessage('token失效，请刷新二维码页面重试');
-        }
-
-        $this->validate($this->request, [
-            'token' => 'required',
-            'user_id'   => 'required'
-        ], [
-            'token.required' => 'token为必填字段',
-            'user_id.required' => 'user_id为必填字段'
-        ]);
-
-        $data = $this->request->all();
+        $data = $this->request->input();
 
         $code = $data['code'];
 
@@ -51,17 +31,22 @@ class BindCallbackHandler extends Handler
 
         $userInfo = $response->getOriginal();
 
+        unset($userInfo['privilege']);
+
+        try {
+            $result = WechatUser::updateOrCreate(['openid' => $userInfo['openid']], $userInfo);
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
+
+        $token = $data['token'];
+
         $openid = $userInfo['openid'];
+
+        $login = LoginStatus::where('token', $token)->update(['status' => 2, 'openid' => $openid, 'ip' => $this->request->getClientIp()]);
 
         $uid = $this->request->input('user_id');
 
         $userBind = WechatUser::where('openid', $openid)->update(['user_id' => $uid]);
-
-        if ($userBind)
-        {
-            $this->withCode(200)->withMessage('绑定成功');
-        } else {
-            $this->withCode(402)->withMessage('绑定失败，稍后重试');
-        }
     }
 }
