@@ -42,6 +42,8 @@ class RouteRegister extends AbstractRouteRegister
 
             $this->router->any('bindcallback', WechatOpenController::class . '@bindCallback');
 
+            $this->router->any('bindquery', WechatOpenController::class . '@bindCallback');
+
         });
     }
 }
