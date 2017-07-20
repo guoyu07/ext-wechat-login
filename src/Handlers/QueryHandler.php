@@ -33,6 +33,7 @@ class QueryHandler extends Handler
 
         if (time() - $timestamp > 300) {
             $this->withCode(402)->withMessage('token失效，请刷新二维码页面重试');
+            exit;
         }
 
         $userInfo = LoginStatus::where('token', $token)->where('status', 2)->first()->user;
