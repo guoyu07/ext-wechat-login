@@ -10,6 +10,7 @@
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
+use Notadd\WechatLogin\Models\LoginStatus;
 use Notadd\WechatLogin\Models\WechatUser;
 
 class BindQueryHandler extends Handler
@@ -39,7 +40,9 @@ class BindQueryHandler extends Handler
 
         $user = WechatUser::where('user_id', $uid)->first();
 
-        if ($user instanceof WechatUser)
+        $userInfo = LoginStatus::where('token', $token)->where('status', 2)->first();
+
+        if ($user instanceof WechatUser && $userInfo instanceof LoginStatus)
         {
             $this->withCode(200)->withMessage('绑定成功');
         } else {
