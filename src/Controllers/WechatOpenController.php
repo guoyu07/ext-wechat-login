@@ -13,6 +13,7 @@ namespace Notadd\WechatLogin\Controllers;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\WechatLogin\Handlers\BindCallbackHandler;
 use Notadd\WechatLogin\Handlers\BindHandler;
+use Notadd\WechatLogin\Handlers\BindQueryHandler;
 use Notadd\WechatLogin\Handlers\FrontAuthHandler;
 use Notadd\WechatLogin\Handlers\BackAuthHandler;
 use Notadd\WechatLogin\Handlers\GetConfHandler;
@@ -39,6 +40,11 @@ class WechatOpenController extends Controller
     }
 
     public function bindCallback(BindCallbackHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    public function bindQuery(BindQueryHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
