@@ -16,10 +16,20 @@ class WechatUser extends Model
 {
     protected $table = 'wechat_users';
 
-    protected $fillable = ['openid', 'user_id', 'nickname', 'province', 'city', 'language', 'country', 'headimgurl', 'sex'];
+    protected $fillable = [
+        'openid',
+        'user_id',
+        'nickname',
+        'province',
+        'city',
+        'language',
+        'country',
+        'headimgurl',
+        'sex'
+    ];
 
     public function userInfo()
     {
-        return $this->hasOne('Member', 'id', 'user_id');
+        return $this->hasOne('Notadd\Foundation\Member\Member', 'id', 'user_id');
     }
 }

@@ -20,7 +20,7 @@ class LoginStatus extends Model
 
     public function user()
     {
-        return $this->hasOne('Notadd\WechatLogin\Models\WechatUser', 'openid', 'openid');
+        return $this->hasOne(WechatUser::class, 'openid', 'openid');
     }
 
 }
