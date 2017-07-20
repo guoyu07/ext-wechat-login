@@ -38,8 +38,6 @@ class BindHandler extends Handler
 
         $url = $response->getTargetUrl();
 
-        dd($url);
-
         $renderer = new Png();
 
         $renderer->setHeight(512);
