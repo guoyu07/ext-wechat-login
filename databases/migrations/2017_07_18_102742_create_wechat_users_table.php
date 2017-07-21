@@ -31,6 +31,7 @@ class CreateWechatUsersTable extends Migration
             $table->string('province');
             $table->string('country');
             $table->string('headimgurl');
+            $table->string('phone');
             $table->timestamps();
         });
     }
