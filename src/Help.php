@@ -12,7 +12,7 @@ namespace Notadd\WechatLogin;
 
 use Illuminate\Support\Facades\Hash;
 
-class help
+class Help
 {
     public static function getToken()
     {
