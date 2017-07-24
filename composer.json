@@ -25,5 +25,5 @@
     "require-dev": {
         "notadd/installers": "0.5.*"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
