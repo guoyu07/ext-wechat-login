@@ -81,6 +81,7 @@ class Extension extends AbstractExtension
      * Get stylesheet of extension.
      *
      * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public static function stylesheet()
     {

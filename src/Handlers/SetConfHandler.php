@@ -5,7 +5,6 @@
  * Date: 2017/5/24
  * Time: 11:54
  */
-
 namespace Notadd\WechatLogin\Handlers;
 
 use Illuminate\Container\Container;
@@ -25,13 +24,10 @@ class SetConfHandler extends AbstractSetHandler
     /**
      * SetHandler constructor.
      *
-     * @param \Illuminate\Container\Container $container
+     * @param \Illuminate\Container\Container                         $container
      * @param \Notadd\Foundation\Setting\Contracts\SettingsRepository $settings
      */
-    public function __construct(
-        Container $container,
-        SettingsRepository $settings
-    )
+    public function __construct(Container $container, SettingsRepository $settings)
     {
         parent::__construct($container);
         $this->settings = $settings;
@@ -55,13 +51,9 @@ class SetConfHandler extends AbstractSetHandler
     public function execute()
     {
         $this->settings->set('wechatLogin.app_id', $this->request->input('app_id'));
-
         $this->settings->set('wechatLogin.app_secret', $this->request->input('app_secret'));
-
         $this->settings->set('wechatLogin.domain', $this->request->input('domain'));
 
         return true;
     }
-
-
 }
