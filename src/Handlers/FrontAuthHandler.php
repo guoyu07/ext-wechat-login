@@ -45,7 +45,9 @@ class FrontAuthHandler extends Handler
         $token = help::getToken();
         $login = new LoginStatus();
         $login->token = $token;
-        $login->status = 1;//status = 1 代表该用户暂未扫描二维码登陆
+
+        $login->status = 1;//status = 1 代表该用户暂未成功登陆
+
         $saveResult = $login->save();
         if (!$saveResult) {
             $this->withCode(402)->withError('保存token失败，请稍候重试');
