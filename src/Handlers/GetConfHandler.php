@@ -5,7 +5,6 @@
  * Date: 2017/5/24
  * Time: 11:54
  */
-
 namespace Notadd\WechatLogin\Handlers;
 
 use Illuminate\Container\Container;
@@ -25,7 +24,7 @@ class GetConfHandler extends DataHandler
     /**
      * GetHandler constructor.
      *
-     * @param Container $container
+     * @param Container          $container
      * @param SettingsRepository $settings
      */
     public function __construct(Container $container, SettingsRepository $settings)
@@ -34,15 +33,20 @@ class GetConfHandler extends DataHandler
         $this->settings = $settings;
     }
 
+    /**
+     * @return array
+     */
     public function data()
     {
         return $data = [
-            'app_id' => $this->settings->get('wechatLogin.app_id', false),
-
-            'app_secret' => $this->settings->get('wechatLogin.app_secret')
+            'app_id'     => $this->settings->get('wechatLogin.app_id', false),
+            'app_secret' => $this->settings->get('wechatLogin.app_secret'),
         ];
     }
 
+    /**
+     * @return array
+     */
     public function execute()
     {
         $data = $this->data();
