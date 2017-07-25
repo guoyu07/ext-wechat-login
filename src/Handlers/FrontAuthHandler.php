@@ -38,7 +38,7 @@ class FrontAuthHandler extends Handler
 
         $login->token = $token;
 
-        $login->status = 1;//status = 1 代表该用户暂未扫描二维码登陆
+        $login->status = 1;//status = 1 代表该用户暂未成功登陆
 
         $saveResult = $login->save();
 
