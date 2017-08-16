@@ -5,7 +5,7 @@ author:
     - twilroad
     - 269044570@qq.com
 version: 0.1.0
-provider: Notadd\BCaptcha\Extension
+provider: Notadd\WechatLogin\Extension
 events:
     subscribes:
         - Notadd\WechatLogin\Listeners\CsrfTokenRegister
