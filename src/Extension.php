@@ -8,9 +8,6 @@
  */
 namespace Notadd\WechatLogin;
 
-use Illuminate\Events\Dispatcher;
-use Notadd\WechatLogin\Listeners\CsrfTokenRegister;
-use Notadd\WechatLogin\Listeners\RouteRegister;
 use Notadd\Foundation\Extension\Abstracts\Extension as AbstractExtension;
 use Overtrue\Socialite\SocialiteManager;
 use Notadd\Foundation\Setting\Contracts\SettingsRepository;
@@ -25,23 +22,11 @@ class Extension extends AbstractExtension
      */
     public function boot()
     {
-        $this->app->make(Dispatcher::class)->subscribe(CsrfTokenRegister::class);
-        $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), '');
         $this->publishes([
             realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/extensions/notadd/wechat-login') => public_path('assets/extensions/notadd/wechat-login'),
         ], 'public');
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
-    }
-
-    /**
-     * Description of extension
-     *
-     * @return string
-     */
-    public static function description()
-    {
-        return '微信登陆插件的配置和管理。';
     }
 
     /**
@@ -54,16 +39,6 @@ class Extension extends AbstractExtension
         return function () {
             return true;
         };
-    }
-
-    /**
-     * Name of extension.
-     *
-     * @return string
-     */
-    public static function name()
-    {
-        return '微信登陆插件';
     }
 
     /**
@@ -100,16 +75,6 @@ class Extension extends AbstractExtension
         return function () {
             return true;
         };
-    }
-
-    /**
-     * Version of extension.
-     *
-     * @return string
-     */
-    public static function version()
-    {
-        return '0.1.0';
     }
 
     public function register()
