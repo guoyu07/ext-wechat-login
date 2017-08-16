@@ -42,30 +42,6 @@ class Extension extends AbstractExtension
     }
 
     /**
-     * Get script of extension.
-     *
-     * @return string
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public static function script()
-    {
-        return asset('assets/extensions/notadd/wechat-login/js/extension.min.js');
-    }
-
-    /**
-     * Get stylesheet of extension.
-     *
-     * @return array
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public static function stylesheet()
-    {
-        return [
-            asset('assets/extensions/notadd/wechat-login/css/extension.min.css')
-        ];
-    }
-
-    /**
      * Uninstall for extension.
      *
      * @return \Closure

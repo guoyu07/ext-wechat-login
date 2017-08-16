@@ -6,6 +6,11 @@ author:
     - 269044570@qq.com
 version: 0.1.0
 provider: Notadd\WechatLogin\Extension
+assets:
+    scripts:
+        - assets/extensions/notadd/wechat-login/js/extension.min.js
+    stylesheets:
+        - assets/extensions/notadd/wechat-login/css/extension.min.css
 events:
     subscribes:
         - Notadd\WechatLogin\Listeners\CsrfTokenRegister
