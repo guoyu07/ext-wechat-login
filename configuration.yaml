@@ -11,7 +11,8 @@ assets:
         - assets/extensions/notadd/wechat-login/js/extension.min.js
     stylesheets:
         - assets/extensions/notadd/wechat-login/css/extension.min.css
+csrf:
+    - 'api/wechat*'
 events:
     subscribes:
-        - Notadd\WechatLogin\Listeners\CsrfTokenRegister
         - Notadd\WechatLogin\Listeners\RouteRegister
