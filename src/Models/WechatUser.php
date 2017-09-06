@@ -9,12 +9,15 @@
 namespace Notadd\WechatLogin\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class WechatUser.
  */
 class WechatUser extends Model
 {
+    use SoftDeletes;
+
     /**
      * @var string
      */
@@ -34,6 +37,8 @@ class WechatUser extends Model
         'headimgurl',
         'sex',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
