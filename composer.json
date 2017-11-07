@@ -16,6 +16,7 @@
             "Notadd\\WechatLogin\\": "src/"
         }
     },
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
         "overtrue/laravel-socialite": "~1.0",
@@ -23,7 +24,8 @@
         "bacon/bacon-qr-code": "~1.0"
     },
     "require-dev": {
-        "notadd/installers": "0.5.*"
-    },
-    "minimum-stability": "stable"
+        "notadd/installers": "0.14.*",
+        "notadd/testing": "0.4.*",
+        "phpunit/phpunit": "~6.0"
+    }
 }
