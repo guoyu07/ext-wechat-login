@@ -37,7 +37,7 @@ class QueryHandler extends Handler
             $this->withCode(402)->withError('token失效，请刷新二维码页面重试');
             exit;
         }
-        $userInfo = LoginStatus::where('token', $token)->where('status', 2)->first()->user;
+        $userInfo = LoginStatus::query()->where('token', $token)->where('status', 2)->first()->user;
         if ($userInfo instanceof WechatUser) {
             $userInfo = $userInfo->toArray();
             $this->withCode(200)->withData($userInfo)->withMessage('获取用户微信详情成功');

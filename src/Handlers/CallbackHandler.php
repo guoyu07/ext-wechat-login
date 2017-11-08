@@ -37,13 +37,13 @@ class CallbackHandler extends Handler
         unset($userInfo['privilege']);
         $userInfo['user_id'] = 0;
         try {
-            WechatUser::updateOrCreate(['openid' => $userInfo['openid']], $userInfo);
+            WechatUser::query()->updateOrCreate(['openid' => $userInfo['openid']], $userInfo);
         } catch (\Exception $exception) {
             return $exception;
         }
         $token = $data['token'];
 
-        LoginStatus::where('token', $token)->update(['status' => 2, 'openid' => $userInfo['openid'], 'ip' => $this->request->getClientIp()]);
+        LoginStatus::query()->where('token', $token)->update(['status' => 2, 'openid' => $userInfo['openid'], 'ip' => $this->request->getClientIp()]);
 
     }
 }

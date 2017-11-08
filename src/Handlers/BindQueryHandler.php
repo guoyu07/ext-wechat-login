@@ -40,8 +40,8 @@ class BindQueryHandler extends Handler
             exit;
         }
         $uid = $this->request->input('user_id');
-        $user = WechatUser::where('user_id', $uid)->first();
-        $userInfo = LoginStatus::where('token', $token)->where('status', 2)->first();
+        $user = WechatUser::query()->where('user_id', $uid)->first();
+        $userInfo = LoginStatus::query()->where('token', $token)->where('status', 2)->first();
         if ($user instanceof WechatUser && $userInfo instanceof LoginStatus) {
             $this->withCode(200)->withMessage('绑定成功');
         } else {

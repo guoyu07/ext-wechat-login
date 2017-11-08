@@ -9,6 +9,7 @@
 namespace Notadd\WechatLogin\Handlers;
 
 use Notadd\Foundation\Routing\Abstracts\Handler;
+use Notadd\WechatLogin\Models\LoginStatus;
 use Notadd\WechatLogin\Models\WechatUser;
 
 /**
@@ -36,15 +37,15 @@ class BindCallbackHandler extends Handler
         }
         $token = $data['token'];
         $openid = $userInfo['openid'];
-        LoginStatus::where('token', $token)->update(['status' => 2, 'openid' => $openid, 'ip' => $this->request->getClientIp()]);
+        LoginStatus::query()->where('token', $token)->update(['status' => 2, 'openid' => $openid, 'ip' => $this->request->getClientIp()]);
 
 
-        $login = LoginStatus::where('token', $token)->update([
+        $login = LoginStatus::query()->where('token', $token)->update([
             'status' => 2,
             'openid' => $openid,
             'ip'     => $this->request->getClientIp(),
         ]);
         $uid = $this->request->input('user_id');
-        WechatUser::where('openid', $openid)->update(['user_id' => $uid]);
+        WechatUser::query()->where('openid', $openid)->update(['user_id' => $uid]);
     }
 }
